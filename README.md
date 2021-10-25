@@ -43,7 +43,7 @@
 2.  Соберите уязвимый образ `docker build -t abuse_nano .`
 3.  Запустите контейнер из собранного образа и перейдите в его оболочку с помощью команды
     `docker run -it abuse_nano /bin/bash`
-4.  Выполните sudo -l
+4.  Выполните `sudo -l`
 
 ![sudo -l result](/pictures/pic3.png)
 
