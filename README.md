@@ -60,5 +60,5 @@
 
 * Сохраним файл и откроем терминальную сессию для пользователя eviluser командой `su eviluser`, вводим пароль evilpassword. В итоге мы получаем сессию пользователя с правами root
 
-![su eviluser](/pictures/pic.png)
+![su eviluser](/pictures/pic6.png)
 
