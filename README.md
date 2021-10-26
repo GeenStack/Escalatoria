@@ -44,6 +44,7 @@
 1.  Перейдите в каталог abuse_sudo/sudo_on_bin/write_file/abuse_nano
 2.  Соберите уязвимый образ `docker build -t abuse_nano .`
 3.  Запустите контейнер из собранного образа и перейдите в его оболочку с помощью команды
+
     `docker run -it abuse_nano /bin/bash`
 4.  Выполните `sudo -l`
 
@@ -52,7 +53,8 @@
 5.  Мы видим, что мы можем через sudo использовать nano, и редактировать файлы с правами root. 
 Для повышения привилегий необходимо отредактировать файл /etc/passwd, создав своего пользователя с правами root. 
 Таким образом также осуществляется закрепление в системе. Для этого необходимо проделать следующие шаги:
-* На своем хосте сгенирируем хэш пароля evilpass для пользователя eviluser командой `openssl passwd -1 -salt eviluser evilpassword`
+* На своем хосте сгенирируем хэш пароля evilpass для пользователя eviluser командой 
+`openssl passwd -1 -salt eviluser evilpassword`
 
 ![generate password for eviluser](/pictures/pic4_1.png)
 
@@ -68,6 +70,7 @@
 1.  Перейдите в каталог abuse_sudo/sudo_on_bin/write_file/abuse_mv
 2.  Соберите уязвимый образ `docker build -t abuse_mv .`
 3.  Запустите контейнер из собранного образа и перейдите в его оболочку с помощью команды
+
     `docker run -it abuse_mv /bin/bash`
 4.  Выполните `sudo -l`
 
@@ -81,4 +84,4 @@
 
 ![sudo -l result](/pictures/pic8.png)
 
-* Выполните команду su eviluser, вы получите сессию пользователя с правами root
+* Выполните команду `su eviluser`, вы получите сессию пользователя с правами root
